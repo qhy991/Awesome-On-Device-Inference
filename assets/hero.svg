@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">The on-device LLM inference stack and four constraints</title>
+  <desc id="desc">A four-layer stack shows model architecture, graph and schedule, vendor runtime, and heterogeneous silicon. Four constraint cards show memory capacity, memory bandwidth, context switching, and thermal and power limits.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07131b"/>
+      <stop offset="0.58" stop-color="#0a1722"/>
+      <stop offset="1" stop-color="#111523"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#43e0c3"/>
+      <stop offset="0.55" stop-color="#72a7ff"/>
+      <stop offset="1" stop-color="#c29cff"/>
+    </linearGradient>
+    <linearGradient id="silicon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#142835"/>
+      <stop offset="1" stop-color="#192237"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#89a9b8" stroke-opacity=".08" stroke-width="1"/>
+    </pattern>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#75dcce"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="560" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="560" rx="28" fill="url(#grid)"/>
+  <circle cx="1010" cy="40" r="190" fill="#5e8cff" opacity=".07"/>
+  <circle cx="170" cy="560" r="230" fill="#3ce1c5" opacity=".05"/>
+
+  <text x="54" y="62" fill="#e8f5f4" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700" letter-spacing="3">AWESOME ON-DEVICE INFERENCE</text>
+  <text x="54" y="104" fill="#ffffff" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="31" font-weight="700">The mobile LLM stack meets four walls</text>
+  <rect x="54" y="119" width="488" height="4" rx="2" fill="url(#accent)"/>
+
+  <g font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <g transform="translate(54 154)">
+      <text x="0" y="16" fill="#718b99" font-size="11" font-weight="700" letter-spacing="1.8">EXECUTION STACK</text>
+      <rect x="0" y="31" width="665" height="73" rx="15" fill="#101f2b" stroke="#284250"/>
+      <circle cx="35" cy="67.5" r="17" fill="#162f38" stroke="#43e0c3"/>
+      <text x="35" y="72" fill="#65ead2" text-anchor="middle" font-size="12" font-weight="700">01</text>
+      <text x="72" y="60" fill="#f4fbfb" font-size="17" font-weight="650">Model architecture</text>
+      <text x="72" y="84" fill="#8da5b0" font-size="12.5">SLM · hybrid attention · low-bit weights</text>
+      <rect x="520" y="48" width="118" height="39" rx="19" fill="#15312f"/>
+      <text x="579" y="72" fill="#61e5cd" text-anchor="middle" font-size="12" font-weight="650">model state</text>
+
+      <path d="M332 104 L332 123" stroke="#75dcce" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <rect x="0" y="125" width="665" height="73" rx="15" fill="#101f2b" stroke="#284250"/>
+      <circle cx="35" cy="161.5" r="17" fill="#172c38" stroke="#72a7ff"/>
+      <text x="35" y="166" fill="#8eb8ff" text-anchor="middle" font-size="12" font-weight="700">02</text>
+      <text x="72" y="154" fill="#f4fbfb" font-size="17" font-weight="650">Graph and schedule</text>
+      <text x="72" y="178" fill="#8da5b0" font-size="12.5">prefill · decode · partition · speculation</text>
+      <rect x="520" y="142" width="118" height="39" rx="19" fill="#192844"/>
+      <text x="579" y="166" fill="#8db8ff" text-anchor="middle" font-size="12" font-weight="650">work graph</text>
+
+      <path d="M332 198 L332 217" stroke="#75dcce" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <rect x="0" y="219" width="665" height="73" rx="15" fill="#101f2b" stroke="#284250"/>
+      <circle cx="35" cy="255.5" r="17" fill="#1c263b" stroke="#a997ff"/>
+      <text x="35" y="260" fill="#c1b2ff" text-anchor="middle" font-size="12" font-weight="700">03</text>
+      <text x="72" y="248" fill="#f4fbfb" font-size="17" font-weight="650">Vendor runtime</text>
+      <text x="72" y="272" fill="#8da5b0" font-size="12.5">Core ML · QNN · Metal · Vulkan · OpenCL</text>
+      <rect x="520" y="236" width="118" height="39" rx="19" fill="#281f3c"/>
+      <text x="579" y="260" fill="#c1b2ff" text-anchor="middle" font-size="12" font-weight="650">opaque cost</text>
+
+      <path d="M332 292 L332 311" stroke="#75dcce" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <rect x="0" y="313" width="665" height="83" rx="15" fill="url(#silicon)" stroke="#355367"/>
+      <text x="24" y="343" fill="#f4fbfb" font-size="17" font-weight="650">Heterogeneous silicon and memory</text>
+      <g transform="translate(24 355)" font-size="12" font-weight="650">
+        <rect width="108" height="28" rx="14" fill="#15312f"/>
+        <text x="54" y="19" fill="#61e5cd" text-anchor="middle">ARM CPU</text>
+        <rect x="119" width="108" height="28" rx="14" fill="#192844"/>
+        <text x="173" y="19" fill="#8db8ff" text-anchor="middle">MOBILE GPU</text>
+        <rect x="238" width="108" height="28" rx="14" fill="#281f3c"/>
+        <text x="292" y="19" fill="#c1b2ff" text-anchor="middle">NPU / ANE</text>
+        <rect x="357" width="128" height="28" rx="14" fill="#30281b"/>
+        <text x="421" y="19" fill="#ffc46b" text-anchor="middle">LPDDR + FLASH</text>
+      </g>
+      <path d="M526 307 C526 336 573 344 620 347" fill="none" stroke="#75dcce" stroke-width="1.8" stroke-dasharray="5 5" marker-end="url(#arrow)"/>
+      <text x="532" y="386" fill="#66808d" font-size="10.5">shared data movement</text>
+    </g>
+
+    <g transform="translate(760 154)">
+      <text x="0" y="16" fill="#718b99" font-size="11" font-weight="700" letter-spacing="1.8">FOUR PHYSICAL WALLS</text>
+      <rect x="0" y="31" width="386" height="77" rx="16" fill="#111f29" stroke="#2b4a56"/>
+      <rect x="0" y="31" width="5" height="77" rx="2.5" fill="#43e0c3" filter="url(#glow)"/>
+      <text x="25" y="58" fill="#f4fbfb" font-size="16" font-weight="650">Capacity wall</text>
+      <text x="25" y="82" fill="#87a0ab" font-size="12.5">weights and KV state exceed device DRAM</text>
+
+      <rect x="0" y="119" width="386" height="77" rx="16" fill="#111f29" stroke="#2b4a56"/>
+      <rect x="0" y="119" width="5" height="77" rx="2.5" fill="#72a7ff" filter="url(#glow)"/>
+      <text x="25" y="146" fill="#f4fbfb" font-size="16" font-weight="650">Bandwidth wall</text>
+      <text x="25" y="170" fill="#87a0ab" font-size="12.5">decode waits on LPDDR or flash movement</text>
+
+      <rect x="0" y="207" width="386" height="77" rx="16" fill="#111f29" stroke="#2b4a56"/>
+      <rect x="0" y="207" width="5" height="77" rx="2.5" fill="#a997ff" filter="url(#glow)"/>
+      <text x="25" y="234" fill="#f4fbfb" font-size="16" font-weight="650">Context switch wall</text>
+      <text x="25" y="258" fill="#87a0ab" font-size="12.5">graphs, delegates, and units pay handoff cost</text>
+
+      <rect x="0" y="295" width="386" height="77" rx="16" fill="#111f29" stroke="#2b4a56"/>
+      <rect x="0" y="295" width="5" height="77" rx="2.5" fill="#ffb454" filter="url(#glow)"/>
+      <text x="25" y="322" fill="#f4fbfb" font-size="16" font-weight="650">Thermal and power wall</text>
+      <text x="25" y="346" fill="#87a0ab" font-size="12.5">sustained clocks and power state define latency</text>
+
+      <rect x="0" y="391" width="386" height="52" rx="15" fill="#0d1922" stroke="#223b49"/>
+      <text x="20" y="422" fill="#7894a1" font-size="12">A fast kernel is not yet a mobile inference system.</text>
+    </g>
+  </g>
+</svg>
