@@ -8,7 +8,7 @@
 
 This is a systems-first index. It asks where a technique sits in the execution stack, which hardware units it coordinates, and which physical constraint it relieves. It is not a leaderboard of small language models.
 
-`Last verified: 2026-11-15`
+`Last verified: 2026-11-17`
 
 ## Contents
 
@@ -108,6 +108,7 @@ System tags describe the kind of contribution:
 
 | Work | Venue | Why it matters | Tags |
 | --- | --- | --- | --- |
+| [MobiInfer: Accelerating On-Device GUI Agents with Workload-Aware Inference](https://arxiv.org/abs/2611.08496) | arXiv 2026 | Built on MNN, it reuses trajectory prefixes, specializes output vocabulary by phase, and uses schema-guided speculative decoding for GUI-agent loops. | `[Mobile]` `[Prefill]` `[Decode]` `[KV]` `[Schedule]` |
 | [LLMCad: Fast and Scalable On-device Large Language Model Inference](https://arxiv.org/abs/2309.04255) | arXiv 2023 | Uses a small draft model and tree-shaped verification to trade extra on-device compute for fewer bandwidth-bound decode steps. | `[Mobile]` `[Decode]` `[Schedule]` |
 | [AHASD: Asynchronous Heterogeneous Architecture for LLM Adaptive Drafting Speculative Decoding on Mobile Devices](https://arxiv.org/abs/2604.25326) | arXiv 2026 | Runs adaptive drafting and verifier work asynchronously across different mobile processors. | `[Mobile-GPU]` `[NPU]` `[Decode]` `[Schedule]` |
 
