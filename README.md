@@ -8,7 +8,7 @@
 
 This is a systems-first index. It asks where a technique sits in the execution stack, which hardware units it coordinates, and which physical constraint it relieves. It is not a leaderboard of small language models.
 
-`Last verified: 2026-11-17`
+`Last verified: 2026-11-19`
 
 ## Contents
 
@@ -78,6 +78,7 @@ System tags describe the kind of contribution:
 
 | Work | Venue | Why it matters | Tags |
 | --- | --- | --- | --- |
+| [HELIX: HEterogeneous LLM Inference with FleXible and Fine-Grained Partitioning](https://arxiv.org/abs/2611.06513) | arXiv 2026 | Discovers and dispatches operator-level partitions across heterogeneous accelerators instead of fixing entire phases to one unit. | `[Mobile-GPU]` `[NPU]` `[Prefill]` `[Decode]` `[Schedule]` |
 | [Fast On-device LLM Inference with NPUs](https://doi.org/10.1145/3669940.3707239) | ASPLOS 2025 | Splits prompt work into reusable NPU graph chunks and offloads unsupported or outlier-sensitive work to CPU or GPU components. | `[Hexagon]` `[Mobile-GPU]` `[Prefill]` `[Schedule]` |
 | [Characterizing Mobile SoC for Accelerating Heterogeneous LLM Inference](https://doi.org/10.1145/3731569.3764808) | SOSP 2025 | Connects mobile SoC measurements to GPU + NPU partitioning decisions and identifies the cost of moving intermediate tensors. | `[Mobile-GPU]` `[NPU]` `[Schedule]` `[Char]` |
 | [PowerInfer-2](https://arxiv.org/abs/2406.06282) | MobiSys 2024 | Runs a large sparse LLM on a smartphone through neuron-cluster scheduling, external-storage prefetch, and accelerator-specific placement. | `[ARM-CPU]` `[NPU]` `[Decode]` `[Offload]` |
@@ -89,6 +90,8 @@ System tags describe the kind of contribution:
 | [When NPUs Are Not Always Faster: A Stage-Level Analysis of Mobile LLM Inference](https://arxiv.org/abs/2605.27435) | arXiv 2026 | Separates prefill, decode, and transfer stages to explain why the nominally faster NPU can lose end to end. | `[NPU]` `[Prefill]` `[Decode]` `[Char]` |
 | [YODA: Engine-Level Design for Energy-Efficient LLM Inference on Mobile Devices](https://doi.org/10.1109/tmc.2026.3751036) | IEEE TMC 2026 | Optimizes the engine and runtime path around mobile energy behavior rather than arithmetic throughput alone. | `[NPU]` `[Energy]` `[Schedule]` |
 | [RS-Infer: A Fast and Secure LLM Inference System for Mobile Devices with Recallable Resource Isolation](https://doi.org/10.1145/3828523.3857080) | ATC 2026 | Adds recallable resource isolation so mobile LLM inference can retain performance while limiting interference and exposure. | `[Mobile-GPU]` `[NPU]` `[Schedule]` |
+| [EdgePace: Deadline- and Freshness-Aware LLM Scheduling on Unified-Memory Platforms](https://arxiv.org/abs/2610.37307) | arXiv 2026 | Protects foreground sensor-processing deadlines from LLM memory-bandwidth contention on unified-memory edge systems. | `[ARM-CPU]` `[Mobile-GPU]` `[NPU]` `[Schedule]` `[Energy]` |
+| [EStream: Fast and Memory-Efficient MoE Prefill through Expert Virtualization on Mobile NPUs](https://arxiv.org/abs/2609.06551) | arXiv 2026 | Virtualizes MoE experts to reduce prefill memory demand on mobile NPUs. | `[NPU]` `[MoE]` `[Prefill]` `[Offload]` |
 
 ## Memory wall, offloading, and KV state
 
@@ -103,11 +106,16 @@ System tags describe the kind of contribution:
 | [ExoMem: OS-Governed Memory for Local Large-LLM Inference on Mobile Edge Devices](https://doi.org/10.1145/3795866.3844471) | MobiCom 2026 | Makes the operating system an actor in deciding how local LLM weights, KV state, and page traffic occupy memory. | `[OS]` `[KV]` `[Offload]` |
 | [Dynamic Flow, Static Graph: KV Cache Reuse for Efficient LLM Serving on Mobile NPUs](https://arxiv.org/abs/2609.34727) | arXiv 2026 | Reuses KV state around the static graph constraints imposed by mobile NPU runtimes. | `[NPU]` `[KV]` `[Decode]` |
 | [Rethinking Unified Memory for NPU-PIM Systems: Dual-View Memory for Dynamic Inference of LLM](https://arxiv.org/abs/2608.06989) | arXiv 2026 | Revisits unified memory for systems that combine NPU compute with near-memory processing. | `[NPU]` `[PIM]` `[KV]` `[Offload]` |
+| [Layer-wise CPU-GPU Scheduling for LLM Inference on Memory-Limited Consumer GPUs](https://arxiv.org/abs/2611.01393) | arXiv 2026 | Runs selected decode layers on the CPU while asynchronously transferring weights to hide the transfer path for models larger than GPU memory. | `[ARM-CPU]` `[Mobile-GPU]` `[Decode]` `[Offload]` |
+| [TierKV: Long-Context On-Device LLMs via Predictive Multi-Tier KV Caching](https://arxiv.org/abs/2609.21172) | arXiv 2026 | Predicts KV placement across memory tiers to retain long-context state within on-device capacity. | `[Mobile]` `[KV]` `[Decode]` `[Offload]` |
+| [GAAC: Lossless KV Compression for Bandwidth-Efficient LLM Inference on Personal Devices](https://arxiv.org/abs/2610.38210) | arXiv 2026 | Compresses KV state without changing model outputs to reduce the decode-time memory-bandwidth cost on personal devices. | `[Mobile]` `[KV]` `[Decode]` |
+| [PhaseGate: Phase-Aware CPU Retrieval Scheduling for On-Device LLMs on Unified Memory](https://arxiv.org/abs/2610.04537) | arXiv 2026 | Schedules CPU-side retrieval around inference phases on unified-memory devices. | `[ARM-CPU]` `[KV]` `[Decode]` `[Schedule]` |
 
 ## Speculative decoding and adaptive execution
 
 | Work | Venue | Why it matters | Tags |
 | --- | --- | --- | --- |
+| [SpecRelay: Amortize or Avoid the Round Trip in Edge-Cloud Speculative Decoding](https://arxiv.org/abs/2611.18963) | arXiv 2026 | Reduces synchronous edge-cloud draft-verify stalls by amortizing verification round trips or avoiding cloud verification when local reasoning suffices. | `[Mobile]` `[Decode]` `[Schedule]` |
 | [MobiInfer: Accelerating On-Device GUI Agents with Workload-Aware Inference](https://arxiv.org/abs/2611.08496) | arXiv 2026 | Built on MNN, it reuses trajectory prefixes, specializes output vocabulary by phase, and uses schema-guided speculative decoding for GUI-agent loops. | `[Mobile]` `[Prefill]` `[Decode]` `[KV]` `[Schedule]` |
 | [LLMCad: Fast and Scalable On-device Large Language Model Inference](https://arxiv.org/abs/2309.04255) | arXiv 2023 | Uses a small draft model and tree-shaped verification to trade extra on-device compute for fewer bandwidth-bound decode steps. | `[Mobile]` `[Decode]` `[Schedule]` |
 | [AHASD: Asynchronous Heterogeneous Architecture for LLM Adaptive Drafting Speculative Decoding on Mobile Devices](https://arxiv.org/abs/2604.25326) | arXiv 2026 | Runs adaptive drafting and verifier work asynchronously across different mobile processors. | `[Mobile-GPU]` `[NPU]` `[Decode]` `[Schedule]` |
@@ -116,6 +124,7 @@ System tags describe the kind of contribution:
 
 | Work | Venue | Why it matters | Tags |
 | --- | --- | --- | --- |
+| [ACSeL: Adaptive Configuration Search for Hardware-Constrained LLM Inference](https://arxiv.org/abs/2611.07570) | arXiv 2026 | Searches model size, batch size, quantization algorithm, and mixed-precision recipes under explicit memory and latency constraints. | `[Quant]` `[Schedule]` `[Energy]` |
 | [T-MAC: CPU Renaissance via Table Lookup for Low-Bit LLM Deployment on Edge](https://doi.org/10.1145/3689031.3696099) | EuroSys 2025 | Replaces unpack-and-multiply low-bit GEMV with table lookups tuned for edge CPUs. | `[ARM-CPU]` `[Quant]` `[Decode]` |
 | [AWQ: Activation-aware Weight Quantization for LLM Compression and Acceleration](https://arxiv.org/abs/2306.00978) | MLSys 2024 | Protects salient weight channels using activation statistics and targets efficient low-bit inference kernels. | `[Quant]` `[Decode]` |
 | [SpinQuant: LLM quantization with learned rotations](https://arxiv.org/abs/2405.16406) | ICLR 2025 | Learns rotations that reduce activation outliers before low-bit execution. | `[Quant]` `[NPU]` |
@@ -142,6 +151,13 @@ The support matrix is a starting point, not a conformance claim. Check the linke
 | [anemll](https://github.com/Anemll/Anemll) | Community | Yes | Metal | ANE through Core ML | Community ANE project. It is not an Apple-supported API. |
 | [ANEForge](https://github.com/sbryngelson/ANEForge) | Community | Yes | Metal | ANE through Core ML | Community experiments with Apple Neural Engine execution |
 
+### Deployment and enablement systems
+
+| Work | Venue | Why it matters | Tags |
+| --- | --- | --- | --- |
+| [Building Fully On-Device GUI Agents with Mobile NPUs](https://arxiv.org/abs/2611.20772) | arXiv 2026 | Redesigns iterative GUI-agent inference around its long-input, short-output workload to run fully on a mobile NPU. | `[NPU]` `[Mobile]` `[Prefill]` `[Decode]` `[Engine]` |
+| [EngineAgent: Agentizing On-Device LLM Inference Engines with Inference Stack Hierarchy Awareness and Hardware Abilities](https://arxiv.org/abs/2611.14356) | arXiv 2026 | Separates reusable engine and hardware knowledge from model-specific changes to automate model enablement across conversion, graphs, operators, and backends. | `[Mobile]` `[Engine]` `[Schedule]` |
+
 ## Mobile-native model architectures
 
 | Work | Venue | Why it matters | Tags |
@@ -167,6 +183,7 @@ Mamba-family and hybrid recurrent models reduce attention KV growth, but they st
 | [Efficient On-Device Diffusion LLM Inference with Mobile NPU](https://arxiv.org/abs/2606.13740) | arXiv 2026 | Studies diffusion-style LLM execution through a mobile NPU path. | `[NPU]` `[Decode]` `[Char]` |
 | [When NPUs Are Not Always Faster: A Stage-Level Analysis of Mobile LLM Inference](https://arxiv.org/abs/2605.27435) | arXiv 2026 | Attributes end-to-end outcomes to stage-specific compute, transfer, and scheduling behavior. | `[NPU]` `[Char]` |
 | [MNN-LLM: A Generic Inference Engine for Fast Large Language Model Deployment on Mobile Devices](https://doi.org/10.1145/3700410.3702126) | ACM Multimedia Asia Workshops 2024 | Documents the MNN mobile LLM engine, including device deployment and runtime optimizations. | `[ARM-CPU]` `[Mobile-GPU]` `[Engine]` |
+| [Evaluating the Applicability of LLM Inference Optimizations on Apple Silicon](https://arxiv.org/abs/2610.31479) | arXiv 2026 | Compares KV pruning, speculative decoding, ported GPU kernels, and post-training quantization on Apple Silicon under a common decode workload. | `[ARM-CPU]` `[Mobile-GPU]` `[Char]` |
 
 ## Reading paths
 
